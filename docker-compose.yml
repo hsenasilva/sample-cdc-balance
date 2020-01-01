@@ -1,0 +1,25 @@
+version: "3.5"
+
+services:
+  sqlserver:
+    container_name: sqlserver
+    image: microsoft/mssql-server-linux:2017-CU9-GDR2
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Standard
+      - SA_PASSWORD=Password!
+      - MSSQL_AGENT_ENABLED=true
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+  kafka:
+    image: wurstmeister/kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_CREATE_TOPICS: "source-balance-events:3:1"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
