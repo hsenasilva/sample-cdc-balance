@@ -21,6 +21,7 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.cloud.stream.app</groupId>
 			<artifactId>cdc-debezium-spring-boot-starter</artifactId>
